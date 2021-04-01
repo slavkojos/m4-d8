@@ -1,4 +1,11 @@
-import { Box, Container, Flex, SimpleGrid, Heading } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Flex,
+  SimpleGrid,
+  Heading,
+  Skeleton,
+} from '@chakra-ui/react';
 
 import { fetchSearchResults } from '../functions/functions.js';
 
@@ -23,16 +30,20 @@ export default function CategoryContainer(props) {
         columns={[2, 3, 4, 6]}
         spacing="30px"
       >
-        {searchResults.map(res => {
-          return (
-            <MovieItem
-              key={res.imdbID}
-              id={res.imdbID}
-              title={res.Title}
-              poster={res.Poster}
-            />
-          );
-        })}
+        {searchResults.length > 0 ? (
+          searchResults.map(res => {
+            return (
+              <MovieItem
+                key={res.imdbID}
+                id={res.imdbID}
+                title={res.Title}
+                poster={res.Poster}
+              />
+            );
+          })
+        ) : (
+          <Skeleton height="300px" />
+        )}
       </SimpleGrid>
     </Box>
   );

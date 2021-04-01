@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
-} from 'react-router-dom';
+
 import {
   chakra,
   Box,
@@ -19,11 +12,24 @@ import {
   VStack,
   IconButton,
   CloseButton,
-  Heading,
+  InputGroup,
+  InputLeftElement,
+  Input,
+  Avatar,
+  Link,
+  Text,
 } from '@chakra-ui/react';
-import { AiOutlineMenu } from 'react-icons/ai';
+import {
+  AiOutlineMenu,
+  AiFillHome,
+  AiOutlineInbox,
+  AiOutlineSearch,
+  AiFillBell,
+} from 'react-icons/ai';
+import { BsFillCameraVideoFill } from 'react-icons/bs';
+import { Link as RouterLink } from 'react-router-dom';
 
-export default function Gslr() {
+export default function Dsll() {
   const bg = useColorModeValue('white', 'gray.800');
   const mobileNav = useDisclosure();
 
@@ -37,27 +43,7 @@ export default function Gslr() {
         shadow="md"
       >
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
-          <Flex>
-            <Link as={Link} to="/">
-              <Heading size="lg">Netflix</Heading>
-            </Link>
-          </Flex>
-          <HStack display="flex" alignItems="center" spacing={1}>
-            <HStack
-              spacing={1}
-              mr={1}
-              color="brand.500"
-              display={{ base: 'none', md: 'inline-flex' }}
-            >
-              <Button variant="ghost">Features</Button>
-              <Button variant="ghost">Pricing</Button>
-              <Button variant="ghost">Blog</Button>
-              <Button variant="ghost">Company</Button>
-              <Button variant="ghost">Sign in</Button>
-            </HStack>
-            <Button colorScheme="brand" size="sm">
-              Get Started
-            </Button>
+          <HStack display="flex" spacing={3} alignItems="center">
             <Box display={{ base: 'inline-flex', md: 'none' }}>
               <IconButton
                 display={{ base: 'flex', md: 'none' }}
@@ -68,7 +54,6 @@ export default function Gslr() {
                 icon={<AiOutlineMenu />}
                 onClick={mobileNav.onOpen}
               />
-
               <VStack
                 pos="absolute"
                 top={0}
@@ -86,26 +71,88 @@ export default function Gslr() {
               >
                 <CloseButton
                   aria-label="Close menu"
+                  justifySelf="self-start"
                   onClick={mobileNav.onClose}
                 />
-
-                <Button w="full" variant="ghost">
-                  Features
+                <Button
+                  w="full"
+                  variant="ghost"
+                  href="#"
+                  leftIcon={<AiFillHome />}
+                >
+                  Register
                 </Button>
-                <Button w="full" variant="ghost">
-                  Pricing
-                </Button>
-                <Button w="full" variant="ghost">
-                  Blog
-                </Button>
-                <Button w="full" variant="ghost">
-                  Company
-                </Button>
-                <Button w="full" variant="ghost">
-                  Sign in
+                <Button
+                  w="full"
+                  variant="ghost"
+                  href="#"
+                  leftIcon={<BsFillCameraVideoFill />}
+                >
+                  Videos
                 </Button>
               </VStack>
             </Box>
+            <chakra.a
+              href="/"
+              title="Choc Home Page"
+              display="flex"
+              alignItems="center"
+            >
+              <VisuallyHidden>Choc</VisuallyHidden>
+            </chakra.a>
+
+            <HStack spacing={3} display={{ base: 'none', md: 'inline-flex' }}>
+              <Link variant="ghost" size="lg" as={RouterLink} to="/">
+                <Text textDecoration="none">Netflix</Text>
+              </Link>
+              <Button
+                variant="ghost"
+                href="#"
+                leftIcon={<BsFillCameraVideoFill />}
+                size="lg"
+              >
+                Videos
+              </Button>
+              <Link
+                variant="ghost"
+                as={RouterLink}
+                leftIcon={<BsFillCameraVideoFill />}
+                size="lg"
+                to="/register"
+              >
+                Register
+              </Link>
+            </HStack>
+          </HStack>
+          <HStack
+            spacing={3}
+            display={mobileNav.isOpen ? 'none' : 'flex'}
+            alignItems="center"
+          >
+            <InputGroup>
+              <InputLeftElement
+                pointerEvents="none"
+                children={<AiOutlineSearch />}
+              />
+              <Input type="tel" placeholder="Search..." />
+            </InputGroup>
+
+            <chakra.a
+              p={3}
+              color={useColorModeValue('gray.800', 'inherit')}
+              rounded="sm"
+              href="#"
+              _hover={{ color: useColorModeValue('gray.800', 'gray.600') }}
+            >
+              <AiFillBell />
+              <VisuallyHidden>Notifications</VisuallyHidden>
+            </chakra.a>
+
+            <Avatar
+              size="sm"
+              name="Dan Abrahmov"
+              src="https://bit.ly/dan-abramov"
+            />
           </HStack>
         </Flex>
       </chakra.header>
