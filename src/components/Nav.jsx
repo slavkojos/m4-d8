@@ -1,5 +1,12 @@
 import React from 'react';
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams,
+} from 'react-router-dom';
 import {
   chakra,
   Box,
@@ -12,6 +19,7 @@ import {
   VStack,
   IconButton,
   CloseButton,
+  Heading,
 } from '@chakra-ui/react';
 import { AiOutlineMenu } from 'react-icons/ai';
 
@@ -30,17 +38,9 @@ export default function Gslr() {
       >
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
           <Flex>
-            <chakra.a
-              href="/"
-              title="Choc Home Page"
-              display="flex"
-              alignItems="center"
-            >
-              <VisuallyHidden>Choc</VisuallyHidden>
-            </chakra.a>
-            <chakra.h1 fontSize="2xl" fontWeight="bold">
-              Netflix
-            </chakra.h1>
+            <Link as={Link} to="/">
+              <Heading size="lg">Netflix</Heading>
+            </Link>
           </Flex>
           <HStack display="flex" alignItems="center" spacing={1}>
             <HStack
