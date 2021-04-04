@@ -6,6 +6,8 @@ export default function Home() {
       <CategoryContainer title="Harry Potter" />
       <CategoryContainer title="Star Wars" />
       <CategoryContainer title="Avengers" />
+      <CategoryContainer title="Lord of the rings" />
+      <CategoryContainer title="Spider-man" />
     </>
   );
 }

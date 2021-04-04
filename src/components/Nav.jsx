@@ -28,6 +28,7 @@ import {
 } from 'react-icons/ai';
 import { BsFillCameraVideoFill } from 'react-icons/bs';
 import { Link as RouterLink } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 export default function Dsll() {
   const bg = useColorModeValue('white', 'gray.800');
@@ -129,14 +130,7 @@ export default function Dsll() {
             display={mobileNav.isOpen ? 'none' : 'flex'}
             alignItems="center"
           >
-            <InputGroup>
-              <InputLeftElement
-                pointerEvents="none"
-                children={<AiOutlineSearch />}
-              />
-              <Input type="tel" placeholder="Search..." />
-            </InputGroup>
-
+            <SearchBar />
             <chakra.a
               p={3}
               color={useColorModeValue('gray.800', 'inherit')}
