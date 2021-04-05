@@ -30,6 +30,7 @@ export default function SearchBar() {
     setIsOpen(false);
   };
   const [searchResults, setSearchResults] = useState([]);
+  const [searchInput, setSearchInput] = useState();
   async function getSearchResults(event) {
     console.log('new fetch');
     setSearchResults(await fetchSearchResults(event.target.value));
@@ -37,17 +38,22 @@ export default function SearchBar() {
     event.target.value === '' && close();
     console.log('isOpen', isOpen);
   }
+  const resetSearchBar = () => {
+    search.current.value = '';
+  };
   const displaySearchResults = () => {
     return (
       searchResults &&
-      searchResults.map(res => {
+      searchResults.map((res, index) => {
+        console.log(index);
         return (
           <SearchResult
-            key={res.imdbID}
+            key={res.index}
             id={res.imdbID}
             title={res.Title}
             image={res.Poster}
             close={close}
+            resetsearch={resetSearchBar}
           />
         );
       })
@@ -56,6 +62,7 @@ export default function SearchBar() {
   /* useEffect(async () => {
     setSearchResults(await fetchSearchResults(event.target.value));
   }, []); */
+
   console.log('searchresults', searchResults);
   return (
     <Popover

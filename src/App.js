@@ -22,7 +22,7 @@ function App() {
       <Router>
         <Nav />
         <Route path="/" exact component={Home} />
-        <Route path="/movie/:movieID" component={MovieDetail} />
+        <Route path="/movie/:movieID" exact component={MovieDetail} />
         <Route path="/register" exact component={Register} />
       </Router>
     </ChakraProvider>

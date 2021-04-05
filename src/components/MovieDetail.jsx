@@ -12,16 +12,17 @@ import {
   Heading,
   Text,
 } from '@chakra-ui/react';
+import CommentsBox from './CommentsBox';
 
 export default function MovieDetail(props) {
   const [movieData, setMovieData] = useState([]);
   useEffect(async () => {
     window.scrollTo(0, 0);
     setMovieData(await fetchFromID(props.match.params.movieID));
-  }, []);
+  }, [props.match.params.movieID]);
   return (
     <Box mx="auto" w={'50%'} my={5}>
-      <Flex>
+      <Flex my={5}>
         <Image src={movieData.Poster} />
         <Box p={4} ml={5}>
           <Heading>{movieData.Title}</Heading>
@@ -32,22 +33,22 @@ export default function MovieDetail(props) {
             {movieData.Actors}
           </Text>
           <Text my={3} fontWeight="600">
-            {`Release date: ${movieData.Released}`}
+            {movieData.Released && `Release date: ${movieData.Released}`}
           </Text>
           <Text my={3} fontWeight="600">
-            {`Duration: ${movieData.Runtime}`}
+            {movieData.Runtime && `Duration: ${movieData.Runtime}`}
           </Text>
-          {console.log(movieData.Ratings)}
-          {movieData.Ratings !== undefined &&
-            movieData.Ratings.map(res => {
+          {movieData.Ratings &&
+            movieData.Ratings.map((res, index) => {
               return (
-                <Text my={3} fontWeight="600">
+                <Text key={index} my={3} fontWeight="600">
                   {`${res.Source}: ${res.Value}`}
                 </Text>
               );
             })}
         </Box>
       </Flex>
+      <CommentsBox id={props.match.params.movieID} />
     </Box>
   );
 }

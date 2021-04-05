@@ -84,4 +84,6 @@ Polish the browsing experience with loaders.
         - elementId is the imdbID of the movie / serie
 
       
-    
+    <Flex w="full" p={10} alignItems="center" justifyContent="center">
+        <Heading>No comments!</Heading>
+      </Flex>
